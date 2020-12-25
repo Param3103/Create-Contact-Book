@@ -1,0 +1,5 @@
+task: create a contact book with name, phone, email id, address
+
+1) create an empty set contact_book
+2) create class adding files to book
+          - add function: adding new contacts
