@@ -5,5 +5,5 @@ from Retrieving_from_Book import RetrievingFromBook
 with open('Contact_Book.csv', 'w') as file:
     fieldnames = ['Name', 'Phone No', 'Email ID', 'Address']
     writer = csv.DictWriter(file, fieldnames=fieldnames)
-    writer.writeheader()
-    AddingToBook.creating_new_contact(AddingToBook('raj', '92955893', None, None), writer)
+    reader = csv.DictReader(file)
+    AddingToBook.update_existing_contact(['Name'], ['Param'], ['Email'], ['param.mehrotra@gmail.com'], reader)
