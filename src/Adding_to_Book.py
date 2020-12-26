@@ -17,6 +17,7 @@ class AddingToBook:
             for contact in contact_book:
                 if contact.key == identifying_values[identifying_keys.index(key)]:
                     for tbc_key in tbc_keys:
+                        original_contact = contact
                         contact.tbc_key = new_values[tbc_keys.index(tbc_key)]
                         contact_book[contact_book.index(original_contact)] = contact
         return(contact_book)
