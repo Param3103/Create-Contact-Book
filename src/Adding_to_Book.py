@@ -12,14 +12,14 @@ class AddingToBook:
         return(contact_book)
 
 # need to work on this
-    def update_existing_contact(identifying_keys, identifying_values, tbc_keys, new_values, contact_book):
+    def update_existing_contact(identifying_keys, identifying_values, tbc_keys, new_values, contact_book_writer, contact_book_reader):
         for key in identifying_keys:
-            for contact in contact_book:
+            for contact in contact_book_reader: #something is wrong here
                 if contact.key == identifying_values[identifying_keys.index(key)]:
                     for tbc_key in tbc_keys:
                         original_contact = contact
                         contact.tbc_key = new_values[tbc_keys.index(tbc_key)]
-                        contact_book[contact_book.index(original_contact)] = contact
-        return(contact_book)
+                        contact_book_writer[contact_book.index(original_contact)] = contact
+        return(contact_book_writer)
 
 AddingToBook
