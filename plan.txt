@@ -1,0 +1,4 @@
+task: create a contact book with name, phone, email id, address
+
+1) create a csv file contact_book with each contact a dictionary
+2) contact is a dictionary
