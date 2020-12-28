@@ -27,14 +27,18 @@ class AddingToBook:
                 if found:
                     for tbc_key in tbc_keys:
                         contact[fieldnames.index(tbc_key)] = new_values[tbc_keys.index(tbc_key)]
+
                         for row in contact_book_reader:
-                            if row == temp:
+                            print(row)
+                            if len(row) != 0:
                                 pos = contact_book_reader.pos(row)
                                 row = contact
                                 contact_book_writer[pos] = row
                                 continue
                             else:
+                                print('ok')
                                 continue
+
                 else:
                     continue
         return(contact_book_writer)

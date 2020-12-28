@@ -19,7 +19,6 @@ with open('Contact_Book.csv', 'r+') as file:
 """
 with open('Contact_Book.csv', 'r+') as file:
     writer = csv.writer(file)
-    reader = csv.reader(file, delimiter=',')
+    reader = csv.reader(file)
     reader = list(reader)
-    print(reader)
     AddingToBook.update_existing_contact(['Name'], ['Raj'], ['Phone No'], ['+65 92955893'], reader, writer)
