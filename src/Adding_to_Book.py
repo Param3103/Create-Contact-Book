@@ -49,10 +49,15 @@ class AddingToBook:
             new_contact = [contact.name, contact.phone, contact.email, contact.address]
             updated_contacts.append(new_contact)
         for contact in contact_book_reader:
-            if contact not in tbu_contacts:
-                temp_writer.writerow(contact)
+            print(contact)
+            if len(contact) == 0:
+                pass
             else:
-                temp_writer.writerow(updated_contacts[tbu_contacts.index(contact)])
+                print('ok')
+                if contact not in tbu_contacts:
+                    temp_writer.writerow(contact)
+                else:
+                    temp_writer.writerow(updated_contacts[tbu_contacts.index(contact)])
         """
         for updated_contact in updated_contacts:
             print(updated_contact)
