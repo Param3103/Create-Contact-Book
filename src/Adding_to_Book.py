@@ -1,17 +1,18 @@
-class AddingToBook:
+from Contact import Contact
+import re
 
-    def creating_new_contact(name, phone, email, address, contact_book):
-        contact = [name, phone, address, email]
-        contact_book.writerow(contact)
-        return contact_book
+class AddingToBook:
+    def creating_new_contact(name, phone, email, address, writer):
+        contact = Contact(name, phone, email, address)
+        writer.writerow([contact.name, contact.phone, contact.email, contact.address])
 
 # need to work on this
     def update_existing_contact(finder_keys, finder_values, tbc_keys, new_values, contact_book_reader, contact_book_writer):
         fieldnames = ['Name', 'Phone No', 'Email ID', 'Address']
+        contacts = []
         for contact in contact_book_reader:
-            contact_book_reader.remove(contact)
             if len(contact) == 0:
-                continue
+                pass
             else:
                 temp = contact
                 found = True
@@ -19,28 +20,61 @@ class AddingToBook:
                     if contact[fieldnames.index(finder_key)] != finder_values[finder_keys.index(finder_key)]:
                         found = False
                         contact = temp
-                        continue
                     else:
                         contact = temp
-                        continue
-                # section below need work
                 if found:
-                    for tbc_key in tbc_keys:
-                        contact[fieldnames.index(tbc_key)] = new_values[tbc_keys.index(tbc_key)]
-
-                        for row in contact_book_reader:
-                            print(row)
-                            if len(row) != 0:
-                                pos = contact_book_reader.pos(row)
-                                row = contact
-                                contact_book_writer[pos] = row
-                                continue
-                            else:
-                                print('ok')
-                                continue
-
+                    contacts.append(contact)
                 else:
                     continue
-        return(contact_book_writer)
+        for old_contact in contacts:
+            contact = Contact
+            contact.name = old_contact[0]
+            contact.phone = old_contact[1]
+            contact.address = old_contact[3]
+            contact.email = old_contact[2]
+            contacts[contacts.index(old_contact)] = contact
 
+       # contacts has all that need to be updated
+        for contact in contacts:
+            print([contact.name, contact.phone, contact.email, contact.address])
+            old_contact = contact
+            for tbc_key in tbc_keys:
+                if tbc_key == 'Name':
+                    contact.name = new_values[tbc_keys.index(tbc_key)]
+                elif tbc_key == 'Phone No':
+                    contact.phone = new_values[tbc_keys.index(tbc_key)]
+                elif tbc_key == 'Email ID':
+                    contact.email = new_values[tbc_keys.index(tbc_key)]
+                elif tbc_key == 'Address':
+                    contact.address = new_values[tbc_keys.index(tbc_key)]
+            contact_book_writer.writerow(contact)
 AddingToBook
+"""
+find contact
+fieldnames = ['Name', 'Phone No', 'Email ID', 'Address']
+        contacts = []
+        for contact in contact_book:
+            if len(contact) == 0:
+                pass
+            else:
+                temp = contact
+                found = True
+                for finder_key in finder_keys:
+                    if contact[fieldnames.index(finder_key)] != finder_values[finder_keys.index(finder_key)]:
+                        found = False
+                        contact = temp
+                    else:
+                        contact = temp
+                if found:
+                    contacts.append(contact)
+                else:
+                    continue
+        for old_contact in contacts:
+            contact = Contact
+            contact.name = old_contact[0]
+            contact.phone = old_contact[1]
+            contact.address = old_contact[3]
+            contact.email = old_contact[2]
+            contacts[contacts.index(old_contact)] = contact
+        return (contacts)
+"""

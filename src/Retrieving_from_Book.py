@@ -1,5 +1,5 @@
 import csv
-
+from Contact import Contact
 
 class RetrievingFromBook:
     def find_contact(contact_book, finder_keys, finder_values):
@@ -21,6 +21,13 @@ class RetrievingFromBook:
                     contacts.append(contact)
                 else:
                     continue
+        for old_contact in contacts:
+            contact = Contact
+            contact.name = old_contact[0]
+            contact.phone = old_contact[1]
+            contact.address = old_contact[3]
+            contact.email = old_contact[2]
+            contacts[contacts.index(old_contact)] = contact
         return (contacts)
 
 
