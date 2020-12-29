@@ -23,9 +23,11 @@ with open('Contact_Book.csv', 'r+') as file:
 """
 
 #this code updates data
-with open('Contact_book.csv', 'r+') as file and open('temp.csv', 'r+') as temp_file:
-    writer = csv.writer(file)
-    reader = csv.reader(file)
-    temp_writer = csv.writer(temp_file)
-    temp_reader = csv.reader(temp_file)
-    AddingToBook.update_existing_contact(['Name'], ['Raj'], ['Email ID'], ['rituraj@gmail.com'], reader, writer, temp_reader, temp_writer)
+with open('Contact_book.csv', 'r+') as file:
+    with open('temp.csv', 'r+') as temp_file:
+        writer = csv.writer(file)
+        reader = csv.reader(file)
+        temp_writer = csv.writer(temp_file)
+        temp_reader = csv.reader(temp_file)
+        AddingToBook.update_existing_contact(['Name'], ['Raj'], ['Email ID'], ['rituraj@gmail.com'], reader, writer,
+                                             temp_reader, temp_writer)
