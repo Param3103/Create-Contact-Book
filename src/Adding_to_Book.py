@@ -48,12 +48,15 @@ class AddingToBook:
                     contact.address = new_values[tbc_keys.index(tbc_key)]
             new_contact = [contact.name, contact.phone, contact.email, contact.address]
             updated_contacts.append(new_contact)
+        # section below is not working
         for contact in contact_book_reader:
             if len(contact) == 0:
                 pass
             elif contact not in tbu_contacts:
+                print(contact)
                 contact_book_writer.writerow(contact)
             else:
+                print(contact)
                 contact_book_writer.writerow(updated_contacts[tbu_contacts.index(contact)])
 
 

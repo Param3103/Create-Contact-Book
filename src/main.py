@@ -24,8 +24,8 @@ with open('Contact_Book.csv', 'r+') as file:
 """
 
 #this code updates data
-with open('Contact_book.csv', 'r+') as file:
-    with open('Updated_Contact_Book.csv', 'r+') as file2:
+with open('Contact_book.csv', 'r') as file:
+    with open('Updated_Contact_Book.csv', 'w') as file2:
         writer = csv.writer(file2)
         reader = csv.reader(file)
         AddingToBook.update_existing_contact(['Name'], ['Raj'], ['Email ID'], ['rituraj@gmail.com'], reader, writer)
