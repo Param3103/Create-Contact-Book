@@ -1,6 +1,7 @@
 import csv
 from Adding_to_Book import AddingToBook
 from Retrieving_from_Book import RetrievingFromBook
+
 # creating contact_book
 
 #this code adds data
@@ -24,10 +25,7 @@ with open('Contact_Book.csv', 'r+') as file:
 
 #this code updates data
 with open('Contact_book.csv', 'r+') as file:
-    with open('temp.csv', 'r+') as temp_file:
-        writer = csv.writer(file)
+    with open('Updated_Contact_Book.csv', 'r+') as file2:
+        writer = csv.writer(file2)
         reader = csv.reader(file)
-        temp_writer = csv.writer(temp_file)
-        temp_reader = csv.reader(temp_file)
-        AddingToBook.update_existing_contact(['Name'], ['Raj'], ['Email ID'], ['rituraj@gmail.com'], reader, writer,
-                                             temp_reader, temp_writer)
+        AddingToBook.update_existing_contact(['Name'], ['Raj'], ['Email ID'], ['rituraj@gmail.com'], reader, writer)
