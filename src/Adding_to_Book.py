@@ -1,11 +1,13 @@
 from Contact import Contact
+
 class AddingToBook:
-    def creating_new_contact(self, name, phone, email, address, writer):
+    def creating_new_contact(name, phone, email, address, writer):
         contact = Contact(name, phone, email, address)
         writer.writerow([contact.name, contact.phone, contact.email, contact.address])
 
 # need to work on this
-    def update_existing_contact(finder_keys, finder_values, tbc_keys, new_values, contact_book_reader, contact_book_writer):
+    def update_existing_contact(finder_keys, finder_values, tbc_keys, new_values, contact_book_reader,
+                                contact_book_writer):
         """temp_reader, temp_writer"""
         fieldnames = ['Name', 'Phone No', 'Email ID', 'Address']
         tbu_contacts = []
@@ -47,18 +49,13 @@ class AddingToBook:
                 elif tbc_key == 'Address':
                     contact.address = new_values[tbc_keys.index(tbc_key)]
             new_contact = [contact.name, contact.phone, contact.email, contact.address]
-            updated_contacts.append(new_contact)
-        # section below is not working
+            contact_book_writer.writerow(new_contact)
         for contact in contact_book_reader:
             if len(contact) == 0:
-                pass
-            elif contact not in tbu_contacts:
-                print(contact)
-                contact_book_writer.writerow(contact)
+                continue
             else:
-                print(contact)
-                contact_book_writer.writerow(updated_contacts[tbu_contacts.index(contact)])
-
+                contact_book_writer.pop(contact)
+                contact_book_writer.writerow(next(updated_contacts))
 
 AddingToBook
 """
