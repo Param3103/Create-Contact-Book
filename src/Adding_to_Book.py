@@ -1,6 +1,5 @@
 import csv
 class AddingToBook:
-
     def creating_new_contact(name, phone, email, address, contact_book):
         contact = {'Name' : name, 'Phone No' : phone, 'Address' : address, 'Email ID' : email}
         contact_book.writerow(contact)
