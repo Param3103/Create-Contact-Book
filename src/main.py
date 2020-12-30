@@ -7,6 +7,7 @@ import os
 
 """
 #this code adds data
+
 with open('Contact_Book.csv', 'a') as file:
     fieldnames = ['Name', 'Phone No', 'Email ID', 'Address']
     writer = csv.writer(file)
@@ -16,6 +17,7 @@ with open('Contact_Book.csv', 'a') as file:
 
 """
 #this code retrieves data
+
 with open('Contact_Book.csv', 'r+') as file:
     writer = csv.writer(file)
     reader = csv.reader(file, delimiter=',')
@@ -25,6 +27,7 @@ with open('Contact_Book.csv', 'r+') as file:
 """
 """
 #this code updates data into same file
+
 with open('Contact_book.csv', 'r+') as file:
     with open('Updated_Contact_Book.csv', 'w+') as file2:
         writer = csv.writer(file2)
