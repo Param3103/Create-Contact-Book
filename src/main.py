@@ -5,14 +5,14 @@ import os
 # creating contact_book
 
 
-"""
-#this code adds data
 
+#this code adds data
+"""
 with open('Contact_Book.csv', 'a') as file:
     writer = csv.writer(file)
-    AddingToBook.creating_new_contact('Raj', '+65 92955893', None, None, writer)
-"""
+    AddingToBook.creating_new_contact('Charu', '+65 96826564', None, None, writer)
 
+"""
 """
 #this code retrieves data
 
@@ -29,7 +29,8 @@ with open('Contact_book.csv', 'r+') as reader_file:
     with open('Updated_Contact_Book.csv', 'w+') as writer_file:
         writer = csv.writer(writer_file)
         reader = csv.reader(reader_file)
-        AddingToBook.update_existing_contact(['Name'], ['Raj'], ['Email ID'], ['rituraj@gmail.com'], reader, writer)
+        AddingToBook.update_existing_contact(['Name'], ['Param'], ['Email ID'], ['param.mehrotra@gmail.com'], reader, writer)
 os.remove('Contact_Book.csv')
 os.rename('Updated_Contact_book.csv', 'Contact_Book.csv')
 """
+
