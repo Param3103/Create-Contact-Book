@@ -1,12 +1,10 @@
 from Contact import Contact
 
 class AddingToBook:
-    def create_new_contact(contact): #contact is Contact object
-    def creating_new_contact(name, phone, email, address, writer):
-        contact = Contact(name, phone, email, address) # this line done before input
+    def create_new_contact(contact, writer): #contact is Contact object
         writer.writerow([contact.name, contact.phone, contact.email, contact.address])
 
-# need to work on this
+
     def update_existing_contact(finder_keys, finder_values, tbc_keys, new_values, contact_book_reader,
                                 contact_book_writer):
         fieldnames = ['Name', 'Phone No', 'Email ID', 'Address']
