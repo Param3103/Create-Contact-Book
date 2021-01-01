@@ -16,12 +16,10 @@ with open('Contact_Book.csv', 'a') as file:
 
 """
 #this code retrieves data
-
 with open('Contact_Book.csv', 'r+') as file:
     reader = csv.reader(file, delimiter=',')
     for contact in RetrievingFromBook.find_contact(reader, ['Name'], ['Raj']):
         print(contact.name)
-
 """
 
 #this code updates data into same file
@@ -34,5 +32,3 @@ with open('Contact_book.csv', 'r+') as reader_file:
         AddingToBook.update_existing_contact(['Name'], ['Param'], ['Email ID'], ['param.mehrotra@gmail.com'], reader, writer)
 os.remove('Contact_Book.csv')
 os.rename('Updated_Contact_book.csv', 'Contact_Book.csv')
-
-
