@@ -79,7 +79,6 @@ elif task == 2:
             AddingToBook.update_existing_contact(identifying_keys, identifying_values, tbc_keys, new_values, reader, writer)
     os.remove('Contact_Book.csv')
     os.rename('Updated_Contact_book.csv', 'Contact_Book.csv')
-
 elif task == 3:
     print("Creating new contact")
     print(" ")

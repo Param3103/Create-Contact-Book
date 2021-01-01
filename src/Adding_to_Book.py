@@ -1,3 +1,4 @@
+
 from Contact import Contact
 
 
@@ -53,6 +54,5 @@ class AddingToBook:
             else:
                 contact_book_writer.pop(contact)
                 contact_book_writer.writerow(next(updated_contacts))
-
 
 AddingToBook

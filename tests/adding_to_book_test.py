@@ -1,6 +1,6 @@
 import unittest
-from src/Adding_to_Book import AddingToBook
-from Retrieving_from_Book import RetrievingFromBook
+from src.Adding_to_Book import AddingToBook
+from src.Retrieving_from_Book import RetrievingFromBook
 import csv
 
 with open('Contact_Book.csv', 'r+') as file:
@@ -15,7 +15,7 @@ class AddingToBookTest(unittest.TestCase):
         AddingToBook.creating_new_contact(contact, csv_writer)
 
         #here check if csv file has contact or not
-        RetrievingFromBook.find_contact(csv_reader, ['Name',], ['Rajesh', '+65 12345678', None None])
+        RetrievingFromBook.find_contact(csv_reader, ['Name',], ['Rajesh', '+65 12345678', None, None])
     def test_updating_contact(self):
         pass
     def removing_contact(self):
