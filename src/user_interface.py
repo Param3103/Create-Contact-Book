@@ -4,7 +4,7 @@ from Retrieving_from_Book import RetrievingFromBook
 import csv
 import os
 
-with open('../Contact_Book.csv', 'r+') as reader_file:
+with open('Contact_book.csv', 'r+') as reader_file:
     with open('Updated_Contact_Book.csv', 'w+') as writer_file:
         writer = csv.writer(writer_file)
         contact_book_reader = csv.reader(reader_file)
@@ -45,15 +45,15 @@ if task == 1:
             continue
         else:
             continue
-    with open('../Contact_Book.csv', 'r+') as reader_file:
+    with open('Contact_book.csv', 'r+') as reader_file:
         with open('Updated_Contact_Book.csv', 'w+') as writer_file:
             writer = csv.writer(writer_file)
             contact_book_reader = csv.reader(reader_file)
             contacts = RetrievingFromBook.find_contact(contact_book_reader, finding_keys, finding_values)
             for contact in contacts:
                 print([contact.name, contact.phone, contact.email, contact.address])
-    os.remove('../Contact_Book.csv')
-    os.rename('Updated_Contact_book.csv', '../Contact_Book.csv')
+    os.remove('Contact_Book.csv')
+    os.rename('Updated_Contact_book.csv', 'Contact_Book.csv')
 
 elif task == 2:
     print("Updating existing contact")
@@ -73,13 +73,13 @@ elif task == 2:
         tbc_keys.append(tbc_key)
         new_value = input('Plz input the new contact detail now. ')
         new_values.append(new_value)
-    with open('../Contact_Book.csv', 'r') as reader_file:
+    with open('Contact_book.csv', 'r') as reader_file:
         with open('Updated_Contact_Book.csv', 'w+') as writer_file:
             writer = csv.writer(writer_file)
             reader = csv.reader(reader_file)
             AddingToBook.update_existing_contact(identifying_keys, identifying_values, tbc_keys, new_values, reader, writer)
-    os.remove('../Contact_Book.csv')
-    os.rename('Updated_Contact_book.csv', '../Contact_Book.csv')
+    os.remove('Contact_Book.csv')
+    os.rename('Updated_Contact_book.csv', 'Contact_Book.csv')
 elif task == 3:
     print("Creating new contact")
     print(" ")
@@ -88,6 +88,6 @@ elif task == 3:
     email = input("Plz input email of contact. Plz leave blank if you don't have the email. ")
     address = input("Plz input address of contact. Plz leave blank if you don't have the address. ")
     contact = Contact(name, phone, email, address)
-    with open('../Contact_Book.csv', 'a') as file:
+    with open('Contact_Book.csv', 'a') as file:
         writer = csv.writer(file)
         AddingToBook.create_new_contact(contact, writer)
