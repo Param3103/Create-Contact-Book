@@ -1,5 +1,5 @@
 import csv
-from Contact import Contact
+from src.Contact import Contact
 
 class RetrievingFromBook:
     def find_contact(contact_book, finder_keys, finder_values):

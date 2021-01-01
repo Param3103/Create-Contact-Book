@@ -1,4 +1,4 @@
-from Contact import Contact
+from src.Contact import Contact
 
 
 class AddingToBook:

@@ -4,5 +4,3 @@ class Contact:
         self.phone = phone
         self.email = email
         self.address = address
-
-Contact

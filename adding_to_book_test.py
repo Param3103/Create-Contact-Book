@@ -1,48 +1,47 @@
 import unittest
 from src.Adding_to_Book import AddingToBook
 from src.Retrieving_from_Book import RetrievingFromBook
-# from src.Contact import Contact for some reason this is not working
+from src.Contact import Contact
 import csv
-try:
-    from src.Contact import Contact
-except ImportError:
-    print("import error")
 
-class Contact:
-    def __init__(self, name, phone, address, email):
-        self.name = name
-        self.phone = phone
-        self.email = email
-        self.address = address
 
-with open('Contact_Book.csv', 'r+') as file:
-    csv_reader = csv.reader(file)
-    csv_writer = csv.writer(file)
+
 
 
 class AddingToBookTest(unittest.TestCase):
-    def test_creating_new_contact(self):
+    def test_create_new_contact(self):
         # first create contact object from input
         contact = Contact('Rajesh', '+65 12345678', None, None)
-        AddingToBook.creating_new_contact(contact, csv_writer)
+        with open('Contact_Book.csv', 'r+') as file:
+            csv_writer = csv.writer(file)
+            AddingToBook.create_new_contact(contact, csv_writer)
+        if contact.name == None:
+            contact.name = ''
+        if contact.phone == None:
+            contact.phone = ''
+        if contact.email == None:
+            contact.email = ''
+        if contact.address == None:
+            contact.address = ''
 
         #here check if csv file has contact or not
-        self.assertIn(contact, 'Contact_Book.csv')
-    """
+        for line in open('Contact_Book.csv', 'r'):
+            self.assertEqual((str(contact.name)+','+str(contact.phone)+','+str(contact.email)+','+str(contact.address)), line)
+
     def test_updating_contact(self):
         pass
     def removing_contact(self):
         pass
-    def test_something(self):
-        self.assertEqual(True, False)
     def test_update_contact_when_3_records_exist(self):
+        pass
+        """
         contact = Contact('Rajesh', '+65 12345678', None, None)
         AddingToBook.creating_new_contact(contact)
         contact = Contact('Rajesh2', '+65 12345678', None, None)
         AddingToBook.creating_new_contact(contact)
         contact = Contact('Rajesh3', '+65 12345678', None, None)
         AddingToBook.creating_new_contact(contact)
-"""
+        """
 
 if __name__ == '__main__':
     unittest.main()
