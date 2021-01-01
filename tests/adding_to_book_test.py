@@ -1,7 +1,7 @@
 import unittest
 from src.Adding_to_Book import AddingToBook
 from src.Retrieving_from_Book import RetrievingFromBook
-# from src.Contact import Contact for ssome reason this is not working
+# from src.Contact import Contact for some reason this is not working
 import csv
 
 class Contact:
