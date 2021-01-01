@@ -12,7 +12,7 @@ class AddingToBookTest(unittest.TestCase):
     def test_create_new_contact(self):
         # first create contact object from input
         contact = Contact('Rajesh', '+65 12345678', None, None)
-        with open('Contact_Book.csv', 'r+') as file:
+        with open('src.Contact_Book.csv', 'r+') as file:
             csv_writer = csv.writer(file)
             AddingToBook.create_new_contact(contact, csv_writer)
         if contact.name == None:
@@ -25,7 +25,7 @@ class AddingToBookTest(unittest.TestCase):
             contact.address = ''
 
         #here check if csv file has contact or not
-        for line in open('Contact_Book.csv', 'r'):
+        for line in open('src\Contact_Book.csv', 'r'):
             self.assertEqual((str(contact.name)+','+str(contact.phone)+','+str(contact.email)+','+str(contact.address)), line)
 
     def test_updating_contact(self):
