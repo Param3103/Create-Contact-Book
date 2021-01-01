@@ -1,4 +1,3 @@
-
 from Contact import Contact
 
 

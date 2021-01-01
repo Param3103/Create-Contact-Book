@@ -52,7 +52,8 @@ if task == 1:
             contacts = RetrievingFromBook.find_contact(contact_book_reader, finding_keys, finding_values)
             for contact in contacts:
                 print([contact.name, contact.phone, contact.email, contact.address])
-
+    os.remove('Contact_Book.csv')
+    os.rename('Updated_Contact_book.csv', 'Contact_Book.csv')
 
 elif task == 2:
     print("Updating existing contact")
