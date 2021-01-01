@@ -3,6 +3,10 @@ from src.Adding_to_Book import AddingToBook
 from src.Retrieving_from_Book import RetrievingFromBook
 # from src.Contact import Contact for some reason this is not working
 import csv
+try:
+    from src.Contact import Contact
+except ImportError:
+    print("import error")
 
 class Contact:
     def __init__(self, name, phone, address, email):
