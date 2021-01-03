@@ -29,21 +29,33 @@ class AddingToBookTest(unittest.TestCase):
             for row in reader:
                 if len(row) > 0:
                     self.assertEqual(row, [str(contact.name),str(contact.phone),str(contact.email),str(contact.address)])
+    def TearDown(self):
+        with open('Updated_Contact_Book.csv'):
+            os.remove('Contact_Book.csv')
+            os.rename('Updated_Contact_Book.csv', 'Contact_Book.csv')
     def test_updating_contact(self):
-        # a contact has already been created in first test
+        contact = Contact('Rajesh', '+65 12345678', '', '')
+        if contact.name == None:
+            contact.name = ''
+        if contact.phone == None:
+            contact.phone = ''
+        if contact.email == None:
+            contact.email = ''
+        if contact.address == None:
+            contact.address = ''
+        AddingToBook.create_new_contact(contact)
         # we wil update the email of that contact and test it
         AddingToBook.update_existing_contact(['Name'], ['Rajesh'], ['Email ID'], ['Rajesh@outlook.com'])
         with open('Contact_Book.csv', 'r') as file:
             reader = csv.reader(file)
-            for row in reader:
-                if len(row) > 0:
-                    self.assertEqual(row, ['Rajesh','+65 12345678','Rajesh@outlook.com',''])
+            self.assertIn(['Rajesh', '+65 12345678', 'Rajesh@outlook.com', ''], reader)
     def TearDown(self):
         with open('Updated_Contact_Book.csv'):
-            pass
-        os.remove('Contact_Book.csv')
-        os.rename('Updated_Contact_Book.csv', 'Contact_Book.csv')
+            os.remove('Contact_Book.csv')
+            os.rename('Updated_Contact_Book.csv', 'Contact_Book.csv')
     def test_update_contact_when_3_records_exist(self):
+        contact = Contact('Rajesh', '+65 12345678', None, None)
+        AddingToBook.create_new_contact(contact)
         contact = Contact('Rajesh2', '+65 12345678', None, None)
         AddingToBook.create_new_contact(contact)
         contact = Contact('Rajesh3', '+65 12345678', None, None)
@@ -55,6 +67,9 @@ class AddingToBookTest(unittest.TestCase):
                 if len(row) > 0:
                     if row[0] == 'Rajesh2':
                         self.assertEqual(row, ['Rajesh2', '+65 12345678', 'Rajesh@outlook.com', ''])
-
+    def TearDown(self):
+        with open('Updated_Contact_Book.csv'):
+            os.remove('Contact_Book.csv')
+            os.rename('Updated_Contact_Book.csv', 'Contact_Book.csv')
 if __name__ == '__main__':
     unittest.main()
