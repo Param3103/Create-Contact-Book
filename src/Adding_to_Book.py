@@ -1,5 +1,6 @@
 from src.Contact import Contact
 import csv
+import os
 
 class AddingToBook:
     def create_new_contact(contact):  # contact is Contact object
@@ -8,8 +9,10 @@ class AddingToBook:
             writer.writerow([contact.name, contact.phone, contact.email, contact.address])
 
     def update_existing_contact(finder_keys, finder_values, tbc_keys, new_values):
-        with open('Contact_book.csv', 'r') as contact_book_reader:
-            with open('Updated_Contact_Book.csv', 'w+') as contact_book_writer:
+        with open('Contact_book.csv', 'r') as reader:
+            with open('Updated_Contact_Book.csv', 'w+') as writer:
+                contact_book_reader = csv.reader(reader)
+                contact_book_writer = csv.writer(writer)
                 fieldnames = ['Name', 'Phone No', 'Email ID', 'Address']
                 tbu_contacts = []
                 updated_contacts = []
@@ -28,7 +31,7 @@ class AddingToBook:
                         if found:
                             tbu_contacts.append(contact)
                         else:
-                            continue
+                            contact_book_writer.writerow(contact)
                 for old_contact in tbu_contacts:
                     contact = Contact
                     contact.name = old_contact[0]
@@ -50,11 +53,7 @@ class AddingToBook:
                             contact.address = new_values[tbc_keys.index(tbc_key)]
                     new_contact = [contact.name, contact.phone, contact.email, contact.address]
                     contact_book_writer.writerow(new_contact)
-                for contact in contact_book_reader:
-                    if len(contact) == 0:
-                        continue
-                    else:
-                        contact_book_writer.pop(contact)
-                        contact_book_writer.writerow(next(updated_contacts))
 
+        os.remove('Contact_Book.csv')
+        os.rename('Updated_Contact_book.csv', 'Contact_Book.csv')
 AddingToBook

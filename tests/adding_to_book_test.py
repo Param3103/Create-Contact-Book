@@ -33,7 +33,13 @@ class AddingToBookTest(unittest.TestCase):
     def test_updating_contact(self):
         # a contact has already been created in first test
         # we wil update the email of that contact and test it
-        pass
+        AddingToBook.update_existing_contact(['Name'], ['Rajesh'], ['Email ID'], ['Rajesh@outlook.com'])
+        with open('Contact_Book.csv', 'r') as file:
+            reader = csv.reader(file)
+            for row in reader:
+                if len(row) > 0:
+                    self.assertEqual(row, ['Rajesh','+65 12345678','Rajesh@outlook.com',])
+
     def removing_contact(self):
         pass
     def test_update_contact_when_3_records_exist(self):

@@ -62,13 +62,7 @@ elif task == 2:
         tbc_keys.append(tbc_key)
         new_value = input('Plz input the new contact detail now. ')
         new_values.append(new_value)
-    with open('Contact_book.csv', 'r') as reader_file:
-        with open('Updated_Contact_Book.csv', 'w+') as writer_file:
-            writer = csv.writer(writer_file)
-            reader = csv.reader(reader_file)
-            AddingToBook.update_existing_contact(identifying_keys, identifying_values, tbc_keys, new_values, reader, writer)
-    os.remove('Contact_Book.csv')
-    os.rename('Updated_Contact_book.csv', 'Contact_Book.csv')
+    AddingToBook.update_existing_contact(identifying_keys, identifying_values, tbc_keys, new_values)
 elif task == 3:
     print("Creating new contact")
     print(" ")
