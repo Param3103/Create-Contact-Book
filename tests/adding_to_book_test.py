@@ -12,7 +12,7 @@ class AddingToBookTest(unittest.TestCase):
     # done
     def test_create_new_contact(self):
         # first create contact object from input
-        contact = Contact('Rajesh', '+65 12345678', None, None)
+        contact = Contact('Rajesh', '+65 12345678', '' ,'')
         AddingToBook.create_new_contact(contact)
         if contact.name == None:
             contact.name = ''
@@ -38,10 +38,7 @@ class AddingToBookTest(unittest.TestCase):
             reader = csv.reader(file)
             for row in reader:
                 if len(row) > 0:
-                    self.assertEqual(row, ['Rajesh','+65 12345678','Rajesh@outlook.com',])
-
-    def removing_contact(self):
-        pass
+                    self.assertEqual(row, ['Rajesh','+65 12345678','Rajesh@outlook.com',''])
     def test_update_contact_when_3_records_exist(self):
         pass
         """
