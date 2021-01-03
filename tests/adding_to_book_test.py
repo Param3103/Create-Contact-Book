@@ -10,6 +10,10 @@ import os
 
 
 class AddingToBookTest(unittest.TestCase):
+    def SetUp(self):
+        with open('Updated_Contact_Book.csv'):
+            os.remove('Contact_Book.csv')
+            os.rename('Updated_Contact_Book.csv', 'Contact_Book.csv')
     def test_create_new_contact(self):
         # first create contact object from input
         contact = Contact('Rajesh', '+65 12345678', '' ,'')
