@@ -6,13 +6,10 @@ import csv
 import os
 
 
-
+#all tests run individually with empty Contact Book file
 
 
 class AddingToBookTest(unittest.TestCase):
-    # done
-    def SetUp(self):
-        pass
     def test_create_new_contact(self):
         # first create contact object from input
         contact = Contact('Rajesh', '+65 12345678', '' ,'')
@@ -41,11 +38,11 @@ class AddingToBookTest(unittest.TestCase):
             for row in reader:
                 if len(row) > 0:
                     self.assertEqual(row, ['Rajesh','+65 12345678','Rajesh@outlook.com',''])
-
     def TearDown(self):
-        with open('temp_Contact_Book.csv') as file:
+        with open('Updated_Contact_Book.csv'):
             pass
-        os.rename('temp_Contact_book.csv', 'Contact_Book.csv')
+        os.remove('Contact_Book.csv')
+        os.rename('Updated_Contact_Book.csv', 'Contact_Book.csv')
     def test_update_contact_when_3_records_exist(self):
         contact = Contact('Rajesh2', '+65 12345678', None, None)
         AddingToBook.create_new_contact(contact)
@@ -58,10 +55,5 @@ class AddingToBookTest(unittest.TestCase):
                 if len(row) > 0:
                     if row[0] == 'Rajesh2':
                         self.assertEqual(row, ['Rajesh2', '+65 12345678', 'Rajesh@outlook.com', ''])
-
-    def TearDown(self):
-        with open('temp_Contact_Book.csv') as file:
-            pass
-        os.rename('temp_Contact_book.csv', 'Contact_Book.csv')
 if __name__ == '__main__':
     unittest.main()
