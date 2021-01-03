@@ -4,11 +4,6 @@ from Retrieving_from_Book import RetrievingFromBook
 import csv
 import os
 
-with open('Contact_book.csv', 'r+') as reader_file:
-    with open('Updated_Contact_Book.csv', 'w+') as writer_file:
-        writer = csv.writer(writer_file)
-        contact_book_reader = csv.reader(reader_file)
-
 task = int(input("What do you want to do? Press 1 for accessing contact. Press 2 for updating existing contact.Press 3 for creating new contact."))
 while task not in range(1, 4):
     task = int(input("Error! Press 1 for accessing contact. Press 2 for updating existing contact.Press 3 for creating new contact."))
@@ -45,15 +40,9 @@ if task == 1:
             continue
         else:
             continue
-    with open('Contact_book.csv', 'r+') as reader_file:
-        with open('Updated_Contact_Book.csv', 'w+') as writer_file:
-            writer = csv.writer(writer_file)
-            contact_book_reader = csv.reader(reader_file)
-            contacts = RetrievingFromBook.find_contact(contact_book_reader, finding_keys, finding_values)
-            for contact in contacts:
-                print([contact.name, contact.phone, contact.email, contact.address])
-    os.remove('Contact_Book.csv')
-    os.rename('Updated_Contact_book.csv', 'Contact_Book.csv')
+    contacts = RetrievingFromBook.find_contact(finding_keys, finding_values)
+    for contact in contacts:
+        print(contact)
 
 elif task == 2:
     print("Updating existing contact")
@@ -88,6 +77,4 @@ elif task == 3:
     email = input("Plz input email of contact. Plz leave blank if you don't have the email. ")
     address = input("Plz input address of contact. Plz leave blank if you don't have the address. ")
     contact = Contact(name, phone, email, address)
-    with open('Contact_Book.csv', 'a') as file:
-        writer = csv.writer(file)
-        AddingToBook.create_new_contact(contact, writer)
+    AddingToBook.create_new_contact(contact)
