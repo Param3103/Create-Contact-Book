@@ -6,14 +6,14 @@ import csv
 import os
 
 
-#all tests run individually with empty Contact Book file
+#aworks with TearDown but not with tearDown
 
 
 class AddingToBookTest(unittest.TestCase):
-    def TearDown(self):
+    def tearDown(self):
         os.remove('Contact_Book.csv')
-        with open('Updated_Contact_Book.csv'):
-            os.rename('Updated_Contact_Book.csv', 'Contact_Book.csv')
+        with open('Updated_contact_Book.csv'):
+            os.rename('Updated_contact_Book.csv', 'Contact_Book.csv')
     def test_create_new_contact(self):
         # first create contact object from input
         contact = Contact('Rajesh', '+65 12345678', '' ,'')
@@ -31,10 +31,6 @@ class AddingToBookTest(unittest.TestCase):
         with open('Contact_Book.csv', 'r') as file:
             reader = csv.reader(file)
             self.assertIn([str(contact.name),str(contact.phone),str(contact.email),str(contact.address)], reader)
-    def TearDown(self):
-        with open('Updated_Contact_Book.csv'):
-            os.remove('Contact_Book.csv')
-            os.rename('Updated_Contact_Book.csv', 'Contact_Book.csv')
     def test_updating_contact(self):
         contact = Contact('Rajesh', '+65 12345678', '', '')
         if contact.name == None:
@@ -51,10 +47,6 @@ class AddingToBookTest(unittest.TestCase):
         with open('Contact_Book.csv', 'r') as file:
             reader = csv.reader(file)
             self.assertIn(['Rajesh', '+65 12345678', 'Rajesh@outlook.com', ''], reader)
-    def TearDown(self):
-        with open('Updated_Contact_Book.csv'):
-            os.remove('Contact_Book.csv')
-            os.rename('Updated_Contact_Book.csv', 'Contact_Book.csv')
     def test_update_contact_when_3_records_exist(self):
         contact = Contact('Rajesh', '+65 12345678', None, None)
         AddingToBook.create_new_contact(contact)
@@ -69,9 +61,5 @@ class AddingToBookTest(unittest.TestCase):
                 if len(row) > 0:
                     if row[0] == 'Rajesh2':
                         self.assertEqual(row, ['Rajesh2', '+65 12345678', 'Rajesh@outlook.com', ''])
-    def TearDown(self):
-        with open('Updated_Contact_Book.csv'):
-            os.remove('Contact_Book.csv')
-            os.rename('Updated_Contact_Book.csv', 'Contact_Book.csv')
 if __name__ == '__main__':
     unittest.main()
