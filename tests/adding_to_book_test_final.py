@@ -11,8 +11,12 @@ import os
 class AddingToBookTest(unittest.TestCase):
     def setUp(self):
         self.contact = Contact('Rajesh', '+65 12345678', '', '')
+        self.contact_2 = Contact('Rajesh2', '+65 12345678', None, None)
+        self.contact_3 = Contact('Rajesh3', '+65 12345678', None, None)
     def tearDown(self):
         del self.contact
+        del self.contact_2
+        del self.contact_3
     def test_create_new_contact(self):
         # first create contact object from input
         AddingToBook.create_new_contact(self.contact)
@@ -45,12 +49,9 @@ class AddingToBookTest(unittest.TestCase):
             reader = csv.reader(file)
             self.assertIn(['Rajesh', '+65 12345678', 'Rajesh@outlook.com', ''], reader)
     def test_update_contact_when_3_records_exist(self):
-        self.contact = Contact('Rajesh', '+65 12345678', None, None)
         AddingToBook.create_new_contact(self.contact)
-        self.contact = Contact('Rajesh2', '+65 12345678', None, None)
-        AddingToBook.create_new_contact(self.contact)
-        self.contact = Contact('Rajesh3', '+65 12345678', None, None)
-        AddingToBook.create_new_contact(self.contact)
+        AddingToBook.create_new_contact(self.contact_2)
+        AddingToBook.create_new_contact(self.contact_3)
         AddingToBook.update_existing_contact(['Name'], ['Rajesh2'], ['Email ID'], ['Rajesh@outlook.com'])
         with open('Contact_Book.csv', 'r') as file:
             reader = csv.reader(file)
