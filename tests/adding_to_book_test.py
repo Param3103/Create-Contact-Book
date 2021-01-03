@@ -10,9 +10,9 @@ import os
 
 
 class AddingToBookTest(unittest.TestCase):
-    def SetUp(self):
+    def TearDown(self):
+        os.remove('Contact_Book.csv')
         with open('Updated_Contact_Book.csv'):
-            os.remove('Contact_Book.csv')
             os.rename('Updated_Contact_Book.csv', 'Contact_Book.csv')
     def test_create_new_contact(self):
         # first create contact object from input
@@ -30,9 +30,7 @@ class AddingToBookTest(unittest.TestCase):
         #here check if csv file has contact or not
         with open('Contact_Book.csv', 'r') as file:
             reader = csv.reader(file)
-            for row in reader:
-                if len(row) > 0:
-                    self.assertEqual(row, [str(contact.name),str(contact.phone),str(contact.email),str(contact.address)])
+            self.assertIn([str(contact.name),str(contact.phone),str(contact.email),str(contact.address)], reader)
     def TearDown(self):
         with open('Updated_Contact_Book.csv'):
             os.remove('Contact_Book.csv')
