@@ -29,6 +29,7 @@ class RetrievingFromBook:
                         else:
                             contact = temp
                     if found:
+                        contact[3] = contact[3][0:-2]
                         contacts.append(contact)
                     else:
                         continue
