@@ -55,5 +55,6 @@ class AddingToBookTest(unittest.TestCase):
                 if len(row) > 0:
                     if row[0] == 'Rajesh2':
                         self.assertEqual(row, ['Rajesh2', '+65 12345678', 'Rajesh@outlook.com', ''])
+
 if __name__ == '__main__':
     unittest.main()
