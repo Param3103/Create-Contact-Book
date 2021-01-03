@@ -3,6 +3,7 @@ from src.Adding_to_Book import AddingToBook
 from src.Retrieving_from_Book import RetrievingFromBook
 from src.Contact import Contact
 import csv
+import os
 
 
 
@@ -10,6 +11,8 @@ import csv
 
 class AddingToBookTest(unittest.TestCase):
     # done
+    def SetUp(self):
+        pass
     def test_create_new_contact(self):
         # first create contact object from input
         contact = Contact('Rajesh', '+65 12345678', '' ,'')
@@ -29,7 +32,6 @@ class AddingToBookTest(unittest.TestCase):
             for row in reader:
                 if len(row) > 0:
                     self.assertEqual(row, [str(contact.name),str(contact.phone),str(contact.email),str(contact.address)])
-
     def test_updating_contact(self):
         # a contact has already been created in first test
         # we wil update the email of that contact and test it
@@ -39,16 +41,27 @@ class AddingToBookTest(unittest.TestCase):
             for row in reader:
                 if len(row) > 0:
                     self.assertEqual(row, ['Rajesh','+65 12345678','Rajesh@outlook.com',''])
-    def test_update_contact_when_3_records_exist(self):
-        pass
-        """
-        contact = Contact('Rajesh', '+65 12345678', None, None)
-        AddingToBook.creating_new_contact(contact)
-        contact = Contact('Rajesh2', '+65 12345678', None, None)
-        AddingToBook.creating_new_contact(contact)
-        contact = Contact('Rajesh3', '+65 12345678', None, None)
-        AddingToBook.creating_new_contact(contact)
-        """
 
+    def TearDown(self):
+        with open('temp_Contact_Book.csv') as file:
+            pass
+        os.rename('temp_Contact_book.csv', 'Contact_Book.csv')
+    def test_update_contact_when_3_records_exist(self):
+        contact = Contact('Rajesh2', '+65 12345678', None, None)
+        AddingToBook.create_new_contact(contact)
+        contact = Contact('Rajesh3', '+65 12345678', None, None)
+        AddingToBook.create_new_contact(contact)
+        AddingToBook.update_existing_contact(['Name'], ['Rajesh2'], ['Email ID'], ['Rajesh@outlook.com'])
+        with open('Contact_Book.csv', 'r') as file:
+            reader = csv.reader(file)
+            for row in reader:
+                if len(row) > 0:
+                    if row[0] == 'Rajesh2':
+                        self.assertEqual(row, ['Rajesh2', '+65 12345678', 'Rajesh@outlook.com', ''])
+
+    def TearDown(self):
+        with open('temp_Contact_Book.csv') as file:
+            pass
+        os.rename('temp_Contact_book.csv', 'Contact_Book.csv')
 if __name__ == '__main__':
     unittest.main()
