@@ -8,14 +8,14 @@ import os
 
 
 class RetrievingFromBookTest(unittest.TestCase):
-    def SetUp(self):
+    def setUp(self):
         contact = Contact('Param', None, None, None)
         AddingToBook.create_new_contact(contact)
 
     def test_find_contact(self):
         contacts = RetrievingFromBook.find_contact(['Name'], ['Param'])
         for contact in contacts:
-            self.assertEqual(contact, ['Param', None, None, None])
+            self.assertEqual(contact, ['Param', '', '', ''])
 
 if __name__ == '__main__':
     unittest.main()
